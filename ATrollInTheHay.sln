@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATrollInTheHay", "ATrollInTheHay\ATrollInTheHay\ATrollInTheHay.csproj", "{7F1F635C-6438-4DCE-99C9-59A8E13F54BC}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ATrollInTheHayContent", "ATrollInTheHay\ATrollInTheHayContent\ATrollInTheHayContent.contentproj", "{022E23A6-FBF4-4B08-9E9C-8AFF2489BA94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATrollInTheHay.Common", "ATrollInTheHay.Common\ATrollInTheHay.Common.csproj", "{04A5B32E-9E3A-4F9B-986B-E5DCEE5E2455}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATrollInTheHay.ResourceManagement", "ATrollInTheHay.ResourceManagement\ATrollInTheHay.ResourceManagement.csproj", "{068CADF9-D209-48B4-9347-8AA5436AE61A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F1F635C-6438-4DCE-99C9-59A8E13F54BC}.Debug|x86.ActiveCfg = Debug|x86
+		{7F1F635C-6438-4DCE-99C9-59A8E13F54BC}.Debug|x86.Build.0 = Debug|x86
+		{7F1F635C-6438-4DCE-99C9-59A8E13F54BC}.Release|x86.ActiveCfg = Release|x86
+		{7F1F635C-6438-4DCE-99C9-59A8E13F54BC}.Release|x86.Build.0 = Release|x86
+		{022E23A6-FBF4-4B08-9E9C-8AFF2489BA94}.Debug|x86.ActiveCfg = Debug|x86
+		{022E23A6-FBF4-4B08-9E9C-8AFF2489BA94}.Release|x86.ActiveCfg = Release|x86
+		{04A5B32E-9E3A-4F9B-986B-E5DCEE5E2455}.Debug|x86.ActiveCfg = Debug|x86
+		{04A5B32E-9E3A-4F9B-986B-E5DCEE5E2455}.Debug|x86.Build.0 = Debug|x86
+		{04A5B32E-9E3A-4F9B-986B-E5DCEE5E2455}.Release|x86.ActiveCfg = Release|x86
+		{04A5B32E-9E3A-4F9B-986B-E5DCEE5E2455}.Release|x86.Build.0 = Release|x86
+		{068CADF9-D209-48B4-9347-8AA5436AE61A}.Debug|x86.ActiveCfg = Debug|x86
+		{068CADF9-D209-48B4-9347-8AA5436AE61A}.Debug|x86.Build.0 = Debug|x86
+		{068CADF9-D209-48B4-9347-8AA5436AE61A}.Release|x86.ActiveCfg = Release|x86
+		{068CADF9-D209-48B4-9347-8AA5436AE61A}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

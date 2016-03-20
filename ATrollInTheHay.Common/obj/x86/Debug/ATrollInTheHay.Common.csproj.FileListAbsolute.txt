@@ -1,0 +1,16 @@
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\ATrollInTheHay.Common.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\ATrollInTheHay.Common.pdb
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.xml
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\obj\x86\Debug\ATrollInTheHay.Common.csprojResolveAssemblyReference.cache
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\obj\x86\Debug\ATrollInTheHay.Common.dll
+E:\Documents\ATrollInTheHay\ATrollInTheHay.Common\obj\x86\Debug\ATrollInTheHay.Common.pdb
