@@ -93,6 +93,7 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
         {
             _attackFinished = true; // do this here so you can force stop attack if you need to
             _animator.SetNewAnimation(WeaponAnimations.HIDDEN);
+            _collisionBoxes.Clear(); // remove all the collision boxes from the weapon
         }
 
         protected void SetBoxOffsetBasedOnAnimationCounter()
@@ -100,6 +101,7 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
             foreach (var box in _attackDictionary.Keys)
             {
                 box.AnchorPoint = _attackDictionary[box][_animator.AnimationCounter];
+                _collisionBoxes.Add(box);
             }
         }
 
