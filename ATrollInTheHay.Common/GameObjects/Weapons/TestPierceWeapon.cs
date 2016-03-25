@@ -11,13 +11,9 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
     {
 
         public TestPierceWeapon(RegionNames region, List<int> imageIndexes, Layer layer, Vector2 anchorPoint) :
-            base(region, imageIndexes, Layer.MidMidground, anchorPoint, 7, 2, new Vector2(200, 200))
+            base(region, imageIndexes, Layer.MidMidground, anchorPoint, 7, 2, new Vector2(200, 200), 100, new Vector2(30, 20))
         {
-            FillBoxOffsets();
-        }
-
-        private void FillBoxOffsets()
-        {
+            base.FillOffsets();
         }
     }
 }

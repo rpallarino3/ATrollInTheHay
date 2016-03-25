@@ -15,8 +15,6 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
 {
     public class PlayerCharacter : StandardGameObject, IDamageable
     {
-        private readonly Vector2 SPRITE_SIZE = new Vector2(50, 100);
-
         private List<Weapon> _availableWeapons;
         private int _equippedWeapon;
 
@@ -43,7 +41,7 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
 
             _animator = new Animator(ConstructAnimations(), PlayerCharacterAnimationNames.STAND_RIGHT);
             _state = CharacterStates.Stand;
-            _collisionBoxes.Add(new RectangleCollisionBox(this, new Vector2(0, 0), (int)SPRITE_SIZE.X, (int)SPRITE_SIZE.Y, _mask));
+            _collisionBoxes.Add(new RectangleCollisionBox(this, new Vector2(0, 0), (int)GameConstants.PLAYER_SPRITE_SIZE.X, (int)GameConstants.PLAYER_SPRITE_SIZE.Y, _mask));
             _availableWeapons = new List<Weapon>();
             _equippedWeapon = -1;
 
@@ -522,35 +520,35 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
             if (type == WeaponType.Piercing)
             {
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT] = 
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
             }
             else if (type == WeaponType.Blunting)
             {
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
             }
             else if (type == WeaponType.Slashing)
             {
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT, 5, speed, SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
             }
 
         }
@@ -698,38 +696,38 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
         {
             var animations = new Dictionary<int, Animation>();
 
-            animations.Add(PlayerCharacterAnimationNames.STAND_LEFT,              new Animation(0,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.STAND_RIGHT,             new Animation(1,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.WALK_LEFT,               new Animation(2,  2, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.WALK_RIGHT,              new Animation(3,  2, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.RUN_LEFT,                new Animation(4,  2, 3, SPRITE_SIZE)); // might want to get rid of run
-            animations.Add(PlayerCharacterAnimationNames.RUN_RIGHT,               new Animation(5,  2, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.DASH_LEFT,               new Animation(6,  2, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.DASH_RIGHT,              new Animation(7,  2, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.JUMP_LEFT,               new Animation(8,  1, 1, SPRITE_SIZE)); // might want to get rid of jump too and just use rise
-            animations.Add(PlayerCharacterAnimationNames.JUMP_RIGHT,              new Animation(9,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.RISING_LEFT,             new Animation(10, 1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.RISING_RIGHT,            new Animation(11, 1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.FALLING_LEFT,            new Animation(12, 1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.FALLING_RIGHT,           new Animation(13, 1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.RECOIL_LEFT,             new Animation(0,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.RECOIL_RIGHT,            new Animation(0,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.CAST_LEFT,               new Animation(0,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.CAST_RIGHT,              new Animation(0,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT,       new Animation(14, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT,      new Animation(15, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT,   new Animation(16, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT,  new Animation(17, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT,      new Animation(14, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT,     new Animation(15, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT,  new Animation(16, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT, new Animation(17, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT,       new Animation(14, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT,      new Animation(15, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT,   new Animation(16, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT,  new Animation(17, 5, 3, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.DIE_LEFT,                new Animation(0,  1, 1, SPRITE_SIZE));
-            animations.Add(PlayerCharacterAnimationNames.DIE_RIGHT,               new Animation(0,  1, 1, SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.STAND_LEFT,              new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.STAND_RIGHT,             new Animation(1,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.WALK_LEFT,               new Animation(2,  2, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.WALK_RIGHT,              new Animation(3,  2, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.RUN_LEFT,                new Animation(4,  2, 3, GameConstants.PLAYER_SPRITE_SIZE)); // might want to get rid of run
+            animations.Add(PlayerCharacterAnimationNames.RUN_RIGHT,               new Animation(5,  2, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.DASH_LEFT,               new Animation(6,  2, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.DASH_RIGHT,              new Animation(7,  2, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.JUMP_LEFT,               new Animation(8,  1, 1, GameConstants.PLAYER_SPRITE_SIZE)); // might want to get rid of jump too and just use rise
+            animations.Add(PlayerCharacterAnimationNames.JUMP_RIGHT,              new Animation(9,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.RISING_LEFT,             new Animation(10, 1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.RISING_RIGHT,            new Animation(11, 1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.FALLING_LEFT,            new Animation(12, 1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.FALLING_RIGHT,           new Animation(13, 1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.RECOIL_LEFT,             new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.RECOIL_RIGHT,            new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.CAST_LEFT,               new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.CAST_RIGHT,              new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT,       new Animation(14, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT,      new Animation(15, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT,   new Animation(16, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT,  new Animation(17, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT,      new Animation(14, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT,     new Animation(15, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT,  new Animation(16, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT, new Animation(17, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT,       new Animation(14, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT,      new Animation(15, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT,   new Animation(16, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT,  new Animation(17, 5, 3, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.DIE_LEFT,                new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
+            animations.Add(PlayerCharacterAnimationNames.DIE_RIGHT,               new Animation(0,  1, 1, GameConstants.PLAYER_SPRITE_SIZE));
 
             return animations;
         }

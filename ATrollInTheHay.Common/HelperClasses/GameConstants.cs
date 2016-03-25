@@ -23,5 +23,6 @@ namespace ATrollInTheHay.Common.HelperClasses
         public static readonly float NUM_LAYERS = 6f;
         public static readonly Vector2 GRAVITATIONAL_PULL = new Vector2(0, 0.4f);
         public static readonly int MAX_COLLISION_TRIES = 5;
+        public static readonly Vector2 PLAYER_SPRITE_SIZE = new Vector2(50, 100);
     }
 }
