@@ -1,5 +1,3 @@
-E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\obj\x86\Debug\ATrollInTheHay.csprojResolveAssemblyReference.cache
-E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Content\CharacterAnimations\CharacterThemeLoad\VillageThemeCharacters.xnb
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Content\EnvironmentTextures\Test1\Test1Names.xnb
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Content\EnvironmentTextures\Test2\Test2Names.xnb
@@ -37,5 +35,7 @@ E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Microsof
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Microsoft.Xna.Framework.Storage.xml
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\obj\x86\Debug\ATrollInTheHay.csprojResolveAssemblyReference.cache
+E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\obj\x86\Debug\ATrollInTheHay.exe
 E:\Documents\ATrollInTheHay\ATrollInTheHay\ATrollInTheHay\obj\x86\Debug\ATrollInTheHay.pdb
