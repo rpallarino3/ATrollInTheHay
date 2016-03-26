@@ -8,6 +8,7 @@ using ATrollInTheHay.Common.Enumerations;
 using ATrollInTheHay.Common.GameObjects;
 using ATrollInTheHay.Common.GameObjects.Characters;
 using ATrollInTheHay.Common.GameObjects.Phantom;
+using ATrollInTheHay.Common.GameObjects.Weapons;
 using ATrollInTheHay.ResourceManagement;
 using ATrollInTheHay.Input;
 using ATrollInTheHay.Graphics;
@@ -50,6 +51,8 @@ namespace ATrollInTheHay.Logic
             _menuLogicHandler = new MenuLogicHandler(_resourceManager, _inputHandler, _fader);
 
             _spinner = new Spinner(_resourceManager, _fader);
+
+            _player.AddWeaponToAvailable(new TestBluntWeapon(RegionNames.Unknown, Layer.FrontMidground, new Vector2(0, 0)), 0);
         }
 
         public void UpdateGameLogic()
@@ -82,6 +85,8 @@ namespace ATrollInTheHay.Logic
                 _camera.Region = RegionNames.Test1;
                 _player.Position = new Vector2(100, 1800);
                 _camera.Position = new Vector2(650, 1660);
+                _player.UpdateWeaponAnchorPositions();
+                _player.EquipStartingWeapon(0);
 
                 _resourceManager.LoadAssets(new RegionLoadMessage()
                 {

@@ -24,5 +24,12 @@ namespace ATrollInTheHay.Common.HelperClasses
         public static readonly Vector2 GRAVITATIONAL_PULL = new Vector2(0, 0.4f);
         public static readonly int MAX_COLLISION_TRIES = 5;
         public static readonly Vector2 PLAYER_SPRITE_SIZE = new Vector2(50, 100);
+
+        public static readonly int PIERCE_ANIMATION_LENGTH = 5;
+        public static readonly int BLUNT_ANIMATION_LENGTH = 5;
+        public static readonly int SLASH_ANIMATION_LENGTH = 5;
+        public static readonly int AIR_PIERCE_ANIMATION_LENGTH = 4;
+        public static readonly int AIR_BLUNT_ANIMATION_LENGTH = 4;
+        public static readonly int AIR_SLASH_ANIMATION_LENGTH = 4;
     }
 }

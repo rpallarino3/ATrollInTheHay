@@ -47,6 +47,14 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
             _attackFinished = true;
         }
 
+        public override void HandleCollisionWithObject(Vector2 currentObjectOffset, CollisionBox collidingBox, GameObject otherObject, Vector2 otherObjectOffset, CollisionBox otherCollidingBox)
+        {
+            if (otherObject is IDamageable) // need to make sure we don't damage twice on the other object
+            {
+                // damage the other object
+            }
+        }
+
         public void BeginAttack(bool aerial, Directions dir)
         {
             _attackFinished = false;
@@ -56,12 +64,12 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
                 if (dir == Directions.Left)
                 {
                     _animator.SetNewAnimation(WeaponAnimations.AERIAL_ATTACK_LEFT);
-                    _attackDictionary = _attackLeftBoxOffsets;
+                    _attackDictionary = _airAttackLeftBoxOffsets;
                 }
                 else
                 {
                     _animator.SetNewAnimation(WeaponAnimations.AERIAL_ATTACK_RIGHT);
-                    _attackDictionary = _attackRightBoxOffsets;
+                    _attackDictionary = _airAttackRightBoxOffsets;
                 }
             }
             else
@@ -69,12 +77,12 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
                 if (dir == Directions.Left)
                 {
                     _animator.SetNewAnimation(WeaponAnimations.ATTACK_LEFT);
-                    _attackDictionary = _airAttackLeftBoxOffsets;
+                    _attackDictionary = _attackLeftBoxOffsets;
                 }
                 else
                 {
                     _animator.SetNewAnimation(WeaponAnimations.ATTACK_RIGHT);
-                    _attackDictionary = _airAttackRightBoxOffsets;
+                    _attackDictionary = _attackRightBoxOffsets;
                 }
             }
 
@@ -107,7 +115,9 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
 
         public void UpdateAnchorPosition(Vector2 anchorObjectLocation)
         {
-            _position = anchorObjectLocation; // + some offset
+            // this is the offset from the top left corner of player sprite (it's location?) to the top left corner of the weapon sprite (it's location?)
+            var defaultOffset = new Vector2(GameConstants.PLAYER_SPRITE_SIZE.X / 2 - _weaponSize.X / 2, -_weaponSize.Y / 2);
+            _position = anchorObjectLocation + defaultOffset; // + some offset
         }
 
         public WeaponNames Name

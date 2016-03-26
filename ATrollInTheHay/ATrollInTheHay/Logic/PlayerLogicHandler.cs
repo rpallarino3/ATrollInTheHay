@@ -73,12 +73,11 @@ namespace ATrollInTheHay.Logic
             // check collisions down here
 
             var collisionCheckCount = 0;
+            var gameObjects = _resourceManager.GetAllObjectsFromCompoundDictionary(_resourceManager.RegionGameObjects);
 
             while (collisionCheckCount < GameConstants.MAX_COLLISION_TRIES)
             {
                 collisionCheckCount++;
-
-                var gameObjects = _resourceManager.GetAllObjectsFromCompoundDictionary(_resourceManager.RegionGameObjects);
 
                 foreach (var go in gameObjects)
                 {
@@ -94,10 +93,19 @@ namespace ATrollInTheHay.Logic
                 }
             }
 
+            _player.UpdateWeaponAnchorPositions(); // i think we want this here (after the player position is decided for good)
+
             if (_player.State == CharacterStates.Attack)
             {
-                // check the collision of the boxes on the weapon
-                // damage stuff and stop attack if necessary
+                if (_player.EquippedWeapon != null)
+                {
+                    // do weapon collisions here?
+                    foreach (var go in gameObjects)
+                    {
+                        var collided = _player.EquippedWeapon.Collide(RegionLayout.RegionsToLoadWithOffsets[_player.Region][_player.EquippedWeapon.Region], go,
+                            RegionLayout.RegionsToLoadWithOffsets[_player.Region][go.Region]);
+                    }
+                }
             }
 
             // then update the player animation

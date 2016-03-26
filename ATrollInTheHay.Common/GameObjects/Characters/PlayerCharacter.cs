@@ -150,6 +150,7 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
                     {
                         this.HandleCollisionWithObject(currentObjectOffset, collisionBox, otherObject, otherObjectOffset, otherBox);
                         otherObject.HandleCollisionWithObject(otherObjectOffset, otherBox, otherObject, currentObjectOffset, collisionBox);
+                        return true; // i think we want to put this in here?
                     }
                 }
             }
@@ -193,7 +194,7 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
                     if (_velocityPerFrame.X != 0)
                         DecayXVelocity(((TerrainObject)otherObject).Friction);
                     else
-                        if (_state != CharacterStates.Recoil && _okStand) // this isn't going to work but just do this for now
+                        if (_state != CharacterStates.Recoil && _okStand && _state != CharacterStates.Attack) // this isn't going to work but just do this for now
                         {
                             // need to find some good way to get to stand without relying on velocity magnitude
                             _state = CharacterStates.Stand;
@@ -451,17 +452,20 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
             if (EquippedWeapon == null)
                 return;
 
-            _attackStartState = _state;
+            _attackStartState = _state; // we might want to set it to stand by default if not aerial
             _state = CharacterStates.Attack;
 
-            if (_state == CharacterStates.Jump) // do an aerial attack
+            if (_attackStartState == CharacterStates.Jump) // do an aerial attack
             {
                 SetAttackAnimation(true);
+                EquippedWeapon.BeginAttack(true, _facingDirection);
             }
             else // do a ground attack
             {
+                _attackStartState = CharacterStates.Stand;
                 _velocityPerFrame.X = 0;
                 SetAttackAnimation(false);
+                EquippedWeapon.BeginAttack(false, _facingDirection);
             }
         }
 
@@ -480,14 +484,32 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
             }
         }
 
-        public void SetStateToPreAttack()
+        public void SetStateToPreAttack() // I guess this should technically only be stand or jump?
         {
             _state = _attackStartState;
+            // need to set the animation here as well
+            if (_state == CharacterStates.Stand)
+                SetStandingAnimation();
+            else
+            {
+                if (_velocityPerFrame.Y > 0)
+                    SetFallingAnimation();
+                else
+                    SetRisingAnimation();
+            }
         }
 
         #endregion
 
         #region Weapons
+
+        public void EquipStartingWeapon(int index)
+        {
+            if (index > 2 || index < 0)
+                return;
+
+            _equippedWeapon = index;
+        }
 
         public void AddWeaponToAvailable(Weapon weapon, int index)
         {
@@ -520,35 +542,35 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
             if (type == WeaponType.Piercing)
             {
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT] = 
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_LEFT, GameConstants.PIERCE_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_RIGHT, GameConstants.PIERCE_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_LEFT, GameConstants.AIR_PIERCE_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.PIERCE_ATTACK_AIR_RIGHT, GameConstants.AIR_PIERCE_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
             }
             else if (type == WeaponType.Blunting)
             {
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_LEFT, GameConstants.BLUNT_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_RIGHT, GameConstants.BLUNT_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_LEFT, GameConstants.AIR_BLUNT_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.BLUNT_ATTACK_AIR_RIGHT, GameConstants.AIR_BLUNT_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
             }
             else if (type == WeaponType.Slashing)
             {
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_LEFT, GameConstants.SLASH_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_RIGHT, GameConstants.SLASH_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_LEFT, GameConstants.AIR_SLASH_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
                 _animator.Animations[PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT] =
-                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT, 5, speed, GameConstants.PLAYER_SPRITE_SIZE);
+                    new Animation(PlayerCharacterAnimationNames.SLASH_ATTACK_AIR_RIGHT, GameConstants.AIR_SLASH_ANIMATION_LENGTH, speed, GameConstants.PLAYER_SPRITE_SIZE);
             }
 
         }
@@ -558,6 +580,7 @@ namespace ATrollInTheHay.Common.GameObjects.Characters
             foreach (var weap in _availableWeapons)
             {
                 weap.UpdateAnchorPosition(this.Position);
+                weap.Region = _region;
             }
         }
 

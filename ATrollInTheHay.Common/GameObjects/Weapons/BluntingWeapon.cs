@@ -47,19 +47,16 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
             animations.Add(WeaponAnimations.HIDDEN, new Animation(WeaponAnimations.HIDDEN, 1, 1, _weaponSize));
             animations.Add(WeaponAnimations.STATIONARY_LEFT, new Animation(WeaponAnimations.STATIONARY_LEFT, 1, 1, _weaponSize));
             animations.Add(WeaponAnimations.STATIONARY_RIGHT, new Animation(WeaponAnimations.STATIONARY_RIGHT, 1, 1, _weaponSize));
-            animations.Add(WeaponAnimations.ATTACK_LEFT, new Animation(WeaponAnimations.ATTACK_LEFT, 5, _swingSpeed, _weaponSize));
-            animations.Add(WeaponAnimations.ATTACK_RIGHT, new Animation(WeaponAnimations.ATTACK_RIGHT, 5, _swingSpeed, _weaponSize));
-            animations.Add(WeaponAnimations.AERIAL_ATTACK_LEFT, new Animation(WeaponAnimations.AERIAL_ATTACK_LEFT, 5, _swingSpeed, _weaponSize));
-            animations.Add(WeaponAnimations.AERIAL_ATTACK_RIGHT, new Animation(WeaponAnimations.AERIAL_ATTACK_RIGHT, 5, _swingSpeed, _weaponSize));
+            animations.Add(WeaponAnimations.ATTACK_LEFT, new Animation(WeaponAnimations.ATTACK_LEFT, GameConstants.BLUNT_ANIMATION_LENGTH, _swingSpeed, _weaponSize));
+            animations.Add(WeaponAnimations.ATTACK_RIGHT, new Animation(WeaponAnimations.ATTACK_RIGHT, GameConstants.BLUNT_ANIMATION_LENGTH, _swingSpeed, _weaponSize));
+            animations.Add(WeaponAnimations.AERIAL_ATTACK_LEFT, new Animation(WeaponAnimations.AERIAL_ATTACK_LEFT, GameConstants.AIR_BLUNT_ANIMATION_LENGTH, _swingSpeed, _weaponSize));
+            animations.Add(WeaponAnimations.AERIAL_ATTACK_RIGHT, new Animation(WeaponAnimations.AERIAL_ATTACK_RIGHT, GameConstants.AIR_BLUNT_ANIMATION_LENGTH, _swingSpeed, _weaponSize));
 
             return animations;
         }
 
         protected virtual void FillOffsets() // put the offets in here
         {
-            // this is the offset from the top left corner of player sprite (it's location?) to the top left corner of the weapon sprite (it's location?)
-            // we actually might need to know this for drawing? do we need it for this? only need this for drawing
-            var defaultOffset = new Vector2(GameConstants.PLAYER_SPRITE_SIZE.X / 2 - _weaponSize.X / 2, -_weaponSize.Y / 2);
             // this is the offset from player topleft to where the weapon is held (center of player)
             var distanceToAnchor = new Vector2(GameConstants.PLAYER_SPRITE_SIZE.X / 2, GameConstants.PLAYER_SPRITE_SIZE.Y * 2 / 3);
             var playerOffsets = new List<Vector2>();

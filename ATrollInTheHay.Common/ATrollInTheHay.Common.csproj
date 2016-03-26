@@ -98,6 +98,7 @@
     <Compile Include="GameObjects\Weapons\Weapon.cs" />
     <Compile Include="HelperClasses\GameConstants.cs" />
     <Compile Include="HelperClasses\InputValidator.cs" />
+    <Compile Include="HelperClasses\MathConstants.cs" />
     <Compile Include="HelperClasses\RegionLayout.cs" />
     <Compile Include="Interfaces\IDamageable.cs" />
     <Compile Include="Interfaces\IDamaging.cs" />

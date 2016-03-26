@@ -10,9 +10,10 @@ namespace ATrollInTheHay.Common.GameObjects.Weapons
     public class TestBluntWeapon : BluntingWeapon
     {
 
-        public TestBluntWeapon(RegionNames region, List<int> imageIndexes, Layer layer, Vector2 anchorPoint) :
-            base(region, imageIndexes, Layer.MidMidground, anchorPoint, 10, 3, new Vector2(300, 200), 100, new Vector2(20, 30))
+        public TestBluntWeapon(RegionNames region, Layer layer, Vector2 anchorPoint) :
+            base(region, new List<int>() { (int)WeaponNames.TestBlunt }, Layer.MidMidground, anchorPoint, 10, 3, new Vector2(300, 200), 100, new Vector2(20, 30))
         {
+            _name = WeaponNames.TestBlunt;
             base.FillOffsets();
         }
     }

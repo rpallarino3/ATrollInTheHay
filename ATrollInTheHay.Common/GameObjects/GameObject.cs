@@ -52,6 +52,7 @@ namespace ATrollInTheHay.Common.GameObjects
 
         #region Collision
 
+        // returning a boolean here might be entirely pointless
         public virtual bool Collide(Vector2 currentObjectOffset, GameObject otherObject, Vector2 otherObjectOffset)
         {
             _rebounded = false;
@@ -63,7 +64,7 @@ namespace ATrollInTheHay.Common.GameObjects
                     {
                         this.HandleCollisionWithObject(currentObjectOffset, box, otherObject, otherObjectOffset, otherBox);
                         otherObject.HandleCollisionWithObject(otherObjectOffset, otherBox, this, currentObjectOffset, box);
-                        return true;
+                        return true; // returning here might not work under all that many circumstances
                     }
                 }
             }
@@ -104,7 +105,7 @@ namespace ATrollInTheHay.Common.GameObjects
 
         #region Physics
 
-        public void UpdatePosition()
+        public virtual void UpdatePosition()
         {
             _position += _velocityPerFrame;
         }
